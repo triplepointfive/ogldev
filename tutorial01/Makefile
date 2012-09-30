@@ -3,7 +3,7 @@ CFLAGS=-c -Wall
 LDLIBS=-lglut -lGL
 OBJECTS=$(SOURCES:.cpp=.o)
 TARGET=$(shell basename `pwd`)
-SOURCES=tutorial01.cpp
+SOURCES=main.cpp
 
 all: $(SOURCES) $(TARGET)
 	
