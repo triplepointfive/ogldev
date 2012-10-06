@@ -3,7 +3,7 @@ CFLAGS=-c -Wall
 LDLIBS=-lglut -lGL -lGLEW
 OBJECTS=$(SOURCES:.cpp=.o)
 TARGET=$(shell basename `pwd`)
-SOURCES=main.cpp
+SOURCES=$(wildcard *.cpp)
 
 all: $(SOURCES) $(TARGET)
 	
