@@ -1,23 +1,3 @@
-/*
-
-	Copyright 2011 Etay Meiri
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-    Tutorial 16 - Basic Texture Mapping
-*/
-
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
@@ -29,8 +9,8 @@
 #include "camera.h"
 #include "texture.h"
 
-#define WINDOW_WIDTH  1920
-#define WINDOW_HEIGHT 1200
+#define WINDOW_WIDTH  1280
+#define WINDOW_HEIGHT 1024
 
 struct Vertex
 {
@@ -155,7 +135,7 @@ static void CreateVertexBuffer()
                            Vertex(Vector3f(0.0f, -1.0f, -1.15475), Vector2f(0.5f, 0.0f)),
                            Vertex(Vector3f(1.0f, -1.0f, 0.5773f),  Vector2f(1.0f, 0.0f)),
                            Vertex(Vector3f(0.0f, 1.0f, 0.0f),      Vector2f(0.5f, 1.0f)) };
-    
+
  	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
@@ -250,7 +230,7 @@ int main(int argc, char** argv)
     glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     glutInitWindowPosition(100, 100);
     glutCreateWindow("Tutorial 16");
-    glutGameModeString("1920x1200@32");
+    glutGameModeString("1280x1024@32");
     glutEnterGameMode();
 
     InitializeGlutCallbacks();
@@ -281,7 +261,7 @@ int main(int argc, char** argv)
     if (!pTexture->Load()) {
         return 1;
     }
-       
+
     glutMainLoop();
 
     return 0;
