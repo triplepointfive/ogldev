@@ -1,4 +1,5 @@
 config/site.php
 files/cache/*
 *.o
+*~
 tutorial*/tutorial*
