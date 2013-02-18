@@ -83,7 +83,7 @@ uniform vec3 gEyeWorldPos;                                                      
 uniform float gMatSpecularIntensity;                                                        \n\
 uniform float gSpecularPower;                                                               \n\
                                                                                             \n\
-vec4 CalcLightInternal(struct BaseLight Light, vec3 LightDirection, vec3 Normal)            \n\
+vec4 CalcLightInternal( BaseLight Light, vec3 LightDirection, vec3 Normal)            \n\
 {                                                                                           \n\
     vec4 AmbientColor = vec4(Light.Color, 1.0f) * Light.AmbientIntensity;                   \n\
     float DiffuseFactor = dot(Normal, -LightDirection);                                     \n\
@@ -112,7 +112,7 @@ vec4 CalcDirectionalLight(vec3 Normal)                                          
     return CalcLightInternal(gDirectionalLight.Base, gDirectionalLight.Direction, Normal);  \n\
 }                                                                                           \n\
                                                                                             \n\
-vec4 CalcPointLight(struct PointLight l, vec3 Normal)                                       \n\
+vec4 CalcPointLight( PointLight l, vec3 Normal)                                       \n\
 {                                                                                           \n\
     vec3 LightDirection = WorldPos0 - l.Position;                                           \n\
     float Distance = length(LightDirection);                                                \n\
@@ -126,7 +126,7 @@ vec4 CalcPointLight(struct PointLight l, vec3 Normal)                           
     return Color / Attenuation;                                                             \n\
 }                                                                                           \n\
                                                                                             \n\
-vec4 CalcSpotLight(struct SpotLight l, vec3 Normal)                                         \n\
+vec4 CalcSpotLight( SpotLight l, vec3 Normal)                                         \n\
 {                                                                                           \n\
     vec3 LightToPixel = normalize(WorldPos0 - l.Base.Position);                             \n\
     float SpotFactor = dot(LightToPixel, l.Direction);                                      \n\
