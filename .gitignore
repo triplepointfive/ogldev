@@ -5,3 +5,4 @@ files/cache/*
 tutorial../tutorial(?<!cpp)
 nbproject
 .dep.inc
+build

@@ -12,7 +12,7 @@ uniform mat4 gWorld;                                                            
                                                                                     \n\
 out vec2 TexCoord0;                                                                 \n\
 out vec3 Normal0;                                                                   \n\
-                                                                                    \n\                                                                                   \n\
+                                                                                    \n\
 void main()                                                                         \n\
 {                                                                                   \n\
     gl_Position = gWVP * vec4(Position, 1.0);                                       \n\
