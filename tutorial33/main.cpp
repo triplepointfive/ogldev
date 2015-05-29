@@ -30,7 +30,7 @@
 #include "lighting_technique.h"
 #include "glut_backend.h"
 #include "mesh.h"
-#ifndef WIN32
+#ifdef FREETYPE
 #include "freetypeGL.h"
 #endif
 
@@ -106,7 +106,7 @@ public:
             return false;            
         }
         
-#ifndef WIN32
+#ifdef FREETYPE
         if (!m_fontRenderer.InitFontRenderer()) {
             return false;
         }
@@ -214,7 +214,7 @@ private:
     {
         char text[32];
         SNPRINTF(text, sizeof(text), "FPS: %.2f", m_fps);
-#ifndef WIN32
+#ifdef FREETYPE
         m_fontRenderer.RenderText(10, 10, text);        
 #endif
     }
@@ -242,7 +242,7 @@ private:
     DirectionalLight m_directionalLight;
     Mesh* m_pMesh;
     PersProjInfo m_persProjInfo;
-#ifndef WIN32
+#ifdef FREETYPE
     FontRenderer m_fontRenderer;
 #endif
     int m_time;

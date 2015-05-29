@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <string>
 #include <assert.h>
-#include <glfx.h>
+#include <GL/glfx.h>
 
 #include "technique.h"
 #include "util.h"

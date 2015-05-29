@@ -18,7 +18,7 @@
 
 #include <limits.h>
 #include <string>
-#include <glfx.h>
+#include <GL/glfx.h>
 
 #include "lighting_technique.h"
 #include "util.h"

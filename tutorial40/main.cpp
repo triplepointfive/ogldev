@@ -36,7 +36,7 @@
 #include "lighting_technique.h"
 #include "glut_backend.h"
 #include "mesh.h"
-#ifndef WIN32
+#ifdef FREETYPE
 #include "freetypeGL.h"
 #endif
 #include "null_technique.h"
@@ -46,7 +46,7 @@ using namespace std;
 #define WINDOW_WIDTH  1280  
 #define WINDOW_HEIGHT 1024
 
-#ifndef WIN32
+#ifdef FREETYPE
 Markup sMarkup = { (char*)"Arial", 64, 1, 0, 0.0, 0.0,
                    {.1,1.0,1.0,.5}, {1,1,1,0},
                    0, {1,0,0,1}, 0, {1,0,0,1},
@@ -116,7 +116,7 @@ public:
             return false;            
         }
         
-#ifndef WIN32
+#ifdef FREETYPE
         if (!m_fontRenderer.InitFontRenderer()) {
             return false;
         }
@@ -352,7 +352,7 @@ private:
         char text[32];
         ZERO_MEM(text);        
         SNPRINTF(text, sizeof(text), "FPS: %.2f", m_fps);
-#ifndef WIN32
+#ifdef FREETYPE
         m_fontRenderer.RenderText(10, 10, text);        
 #endif
     }   
@@ -369,7 +369,7 @@ private:
     Mesh m_quad;
     Texture* m_pGroundTex;
     PersProjInfo m_persProjInfo;
-#ifndef WIN32
+#ifdef FREETYPE
     FontRenderer m_fontRenderer;
 #endif
     int m_glutTime;

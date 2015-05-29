@@ -19,7 +19,7 @@
 #include <limits.h>
 #include "math_3d.h"
 #include <string>
-#include <glfx.h>
+#include <GL/glfx.h>
 
 
 #include "lighting_technique.h"

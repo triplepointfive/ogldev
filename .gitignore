@@ -3,3 +3,5 @@ files/cache/*
 *.o
 *~
 tutorial../tutorial(?<!cpp)
+nbproject
+.dep.inc

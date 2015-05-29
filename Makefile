@@ -1,4 +1,4 @@
-DIRS=$(shell seq 42)
+DIRS=$(shell seq 45)
 
 all:
 	cd tutorial01 ;\

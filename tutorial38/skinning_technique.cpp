@@ -18,7 +18,7 @@
 
 #include <limits.h>
 #include <string>
-#include <glfx.h>
+#include <GL/glfx.h>
 #include <assert.h>
 
 #include "skinning_technique.h"

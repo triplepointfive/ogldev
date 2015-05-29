@@ -33,7 +33,7 @@
 #include "mesh.h"
 #include "shadow_map_technique.h"
 #include "shadow_map_fbo.h"
-#ifndef WIN32
+#ifdef FREETYPE
 #include "freetypeGL.h"
 #endif
 using namespace std;
@@ -42,7 +42,7 @@ using namespace std;
 #define WINDOW_HEIGHT 1000
 
 
-#ifndef WIN32
+#ifdef FREETYPE
 Markup sMarkup = { (char*)"Arial", 64, 1, 0, 0.0, 0.0,
                    {.1,1.0,1.0,.5}, {1,1,1,0},
                    0, {1,0,0,1}, 0, {1,0,0,1},
@@ -54,7 +54,7 @@ class Tutorial42 : public ICallbacks
 public:
 
     Tutorial42() 
-#ifndef WIN32
+#ifdef FREETYPE
            : m_fontRenderer2(sMarkup)
 #endif
     {
@@ -134,7 +134,7 @@ public:
 			return false;
 		}
 
-#ifndef WIN32
+#ifdef FREETYPE
         if (!m_fontRenderer.InitFontRenderer()) {
             return false;
         }
@@ -281,7 +281,7 @@ private:
         char text[32];
         ZERO_MEM(text);        
         SNPRINTF(text, sizeof(text), "FPS: %.2f", m_fps);
-#ifndef WIN32
+#ifdef FREETYPE
         m_fontRenderer.RenderText(10, 10, text);        
 #endif
     }       
@@ -299,7 +299,7 @@ private:
     int m_time;
     int m_frameCount;
     float m_fps;    
-#ifndef WIN32
+#ifdef FREETYPE
     FontRenderer m_fontRenderer;
     FontRenderer m_fontRenderer2;
 #endif
