@@ -25,7 +25,7 @@
 
 using namespace std;
 
-static const char* pEffectFile = "shaders/shadow_volume.glsl";
+static const char* pEffectFile = "../tutorial40/shaders/shadow_volume.glsl";
 
 ShadowVolumeTechnique::ShadowVolumeTechnique() : Technique(pEffectFile)
 {   

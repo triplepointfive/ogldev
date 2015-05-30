@@ -25,7 +25,7 @@
 
 using namespace std;
 
-static const char* pEffectFile = "shaders/lighting.glsl";
+static const char* pEffectFile = "../tutorial40/shaders/lighting.glsl";
 
 LightingTechnique::LightingTechnique() : Technique(pEffectFile)
 {   

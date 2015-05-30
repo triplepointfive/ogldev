@@ -26,7 +26,7 @@
 
 using namespace std;
 
-static const char* pEffectFile = "shaders/skinning.glsl";
+static const char* pEffectFile = "../tutorial38/shaders/skinning.glsl";
 
 SkinningTechnique::SkinningTechnique() : Technique(pEffectFile)
 {   

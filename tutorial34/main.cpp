@@ -116,19 +116,19 @@ public:
         m_pEffect->SetMatSpecularIntensity(0.0f);
         m_pEffect->SetMatSpecularPower(0);
 
-        if (!m_mesh[0].LoadMesh("models/g.obj")) {
+        if (!m_mesh[0].LoadMesh("../Content/glfx/g.obj")) {
             return false;            
         }
 
-        if (!m_mesh[1].LoadMesh("models/l.obj")) {
+        if (!m_mesh[1].LoadMesh("../Content/glfx/l.obj")) {
             return false;            
         }
 
-        if (!m_mesh[2].LoadMesh("models/f.obj")) {
+        if (!m_mesh[2].LoadMesh("../Content/glfx/f.obj")) {
             return false;            
         }
 
-        if (!m_mesh[3].LoadMesh("models/x.obj")) {
+        if (!m_mesh[3].LoadMesh("../Content/glfx/x.obj")) {
             return false;            
         }
 

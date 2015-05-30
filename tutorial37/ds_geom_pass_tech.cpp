@@ -23,7 +23,7 @@
 #include "util.h"
 
 
-DSGeomPassTech::DSGeomPassTech() : Technique("shaders/geometry_pass.glsl")
+DSGeomPassTech::DSGeomPassTech() : Technique("../tutorial37/shaders/geometry_pass.glsl")
 {   
 }
 

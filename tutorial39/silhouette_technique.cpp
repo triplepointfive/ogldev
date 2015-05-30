@@ -26,7 +26,7 @@
 
 using namespace std;
 
-static const char* pEffectFile = "shaders/silhouette.glsl";
+static const char* pEffectFile = "../tutorial39/shaders/silhouette.glsl";
 
 SilhouetteTechnique::SilhouetteTechnique() : Technique(pEffectFile)
 {   

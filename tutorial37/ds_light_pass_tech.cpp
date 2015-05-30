@@ -23,7 +23,7 @@
 #include "util.h"
 
 
-DSLightPassTech::DSLightPassTech() : Technique("shaders/light_pass.glsl")
+DSLightPassTech::DSLightPassTech() : Technique("../tutorial37/shaders/light_pass.glsl")
 {   
 }
 

@@ -37,12 +37,12 @@ bool LightingTechnique::Init()
         return false;
     }
 
-    if (!AddShader(GL_VERTEX_SHADER, "shaders/lighting.vs")) {
+    if (!AddShader(GL_VERTEX_SHADER, "../tutorial46/shaders/lighting.vs")) {
         return false;
     }
 
 
-    if (!AddShader(GL_FRAGMENT_SHADER, "shaders/lighting.fs")) {
+    if (!AddShader(GL_FRAGMENT_SHADER, "../tutorial46/shaders/lighting.fs")) {
         return false;
     }
 

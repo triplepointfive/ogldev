@@ -38,11 +38,11 @@ bool SSAOTechnique::Init()
         return false;
     }
 
-    if (!AddShader(GL_VERTEX_SHADER, "shaders/ssao.vs")) {
+    if (!AddShader(GL_VERTEX_SHADER, "../tutorial45/shaders/ssao.vs")) {
         return false;
     }
 
-    if (!AddShader(GL_FRAGMENT_SHADER, "shaders/ssao.fs")) {
+    if (!AddShader(GL_FRAGMENT_SHADER, "../tutorial45/shaders/ssao.fs")) {
         return false;
     }
 

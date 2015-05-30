@@ -22,7 +22,7 @@
 #include "null_technique.h"
 #include "util.h"
 
-static const char* pEffectFile = "shaders/null_technique.glsl";
+static const char* pEffectFile = "../tutorial37/shaders/null_technique.glsl";
 
 NullTechnique::NullTechnique() : Technique(pEffectFile)
 {   
