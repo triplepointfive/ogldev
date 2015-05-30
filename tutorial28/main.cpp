@@ -25,6 +25,12 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 
+#ifdef __GNUC__
+#  if __GNUC_PREREQ(4,7)
+#include <unistd.h>
+#  endif
+#endif
+
 #include "engine_common.h"
 #include "util.h"
 #include "pipeline.h"

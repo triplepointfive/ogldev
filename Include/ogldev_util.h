@@ -16,8 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OGLDEV_UTIL_H
-#define	OGLDEV_UTIL_H
+#ifndef UTIL_H
+#define	UTIL_H
 
 #ifndef WIN32
 #include <unistd.h>
@@ -71,5 +71,5 @@ float fmax(float a, float b);
 
 long long GetCurrentTimeMillis();
 
-#endif	/* OGLDEV_UTIL_H */
+#endif	/* UTIL_H */
 

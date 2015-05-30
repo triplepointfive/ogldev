@@ -22,6 +22,8 @@
 #include <list>
 #include <GL/glew.h>
 
+#include "ogldev_util.h"
+
 class Technique
 {
 public:
@@ -46,8 +48,4 @@ private:
     const char* m_pEffectFile;
 };
 
-#define INVALID_UNIFORM_LOCATION 0xFFFFFFFF
-
-
 #endif	/* TECHNIQUE_H */
-
