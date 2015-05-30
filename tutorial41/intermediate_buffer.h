@@ -1,6 +1,5 @@
 /*
-
-	Copyright 2011 Etay Meiri
+        Copyright 2011 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,12 +15,33 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OGLDEV_TYPES_H
-#define	OGLDEV_TYPES_H
+#ifndef INTERMEDIATE_BUFFER_H
+#define	INTERMEDIATE_BUFFER_H
 
-typedef unsigned int uint;
-typedef unsigned short ushort;
-typedef unsigned char uchar;
+#include <GL/glew.h>
 
-#endif	/* OGLDEV_TYPES_H */
+
+class IntermediateBuffer
+{
+public:
+
+    IntermediateBuffer();
+
+    ~IntermediateBuffer();
+
+    bool Init(unsigned int WindowWidth, unsigned int WindowHeight);
+
+    void BindForWriting();
+
+    void BindForReading();  
+
+private:
+
+    GLuint m_fbo;
+    GLuint m_colorBuffer;
+    GLuint m_motionBuffer;
+	GLuint m_depthBuffer;
+};
+
+#endif	
 

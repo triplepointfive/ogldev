@@ -15,11 +15,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef LIGHTING_TECHNIQUE_H
-#define	LIGHTING_TECHNIQUE_H
+#ifndef SKINNING_TECHNIQUE_H
+#define	SKINNING_TECHNIQUE_H
 
 #include "technique.h"
-#include "math_3d.h"
+#include "ogldev_math_3d.h"
 
 struct BaseLight
 {
@@ -77,27 +77,30 @@ struct SpotLight : public PointLight
     }
 };
 
-class LightingTechnique : public Technique {
+class SkinningTechnique : public Technique {
 public:
 
-    static const unsigned int MAX_POINT_LIGHTS = 2;
-    static const unsigned int MAX_SPOT_LIGHTS = 2;
+    static const uint MAX_POINT_LIGHTS = 2;
+    static const uint MAX_SPOT_LIGHTS = 2;
+    static const uint MAX_BONES = 100;
 
-    LightingTechnique();
+    SkinningTechnique();
 
     virtual bool Init();
 
     void SetWVP(const Matrix4f& WVP);
+    void SetPrevWVP(const Matrix4f& PrevWVP);
     void SetWorldMatrix(const Matrix4f& WVP);
-    void SetColorTextureUnit(unsigned int TextureUnit);
+    void SetColorTextureUnit(uint TextureUnit);
     void SetDirectionalLight(const DirectionalLight& Light);
-    void SetPointLights(unsigned int NumLights, const PointLight* pLights);
-    void SetSpotLights(unsigned int NumLights, const SpotLight* pLights);
+    void SetPointLights(uint NumLights, const PointLight* pLights);
+    void SetSpotLights(uint NumLights, const SpotLight* pLights);
     void SetEyeWorldPos(const Vector3f& EyeWorldPos);
     void SetMatSpecularIntensity(float Intensity);
     void SetMatSpecularPower(float Power);
-    void SetColor(const Vector4f& Color);
-
+    void SetBoneTransform(uint Index, const Matrix4f& Transform);
+    void SetPrevBoneTransform(uint Index, const Matrix4f& Transform);
+    
 private:
     
     GLuint m_WVPLocation;
@@ -141,7 +144,10 @@ private:
             GLuint Exp;
         } Atten;
     } m_spotLightsLocation[MAX_SPOT_LIGHTS];
+    
+    GLuint m_boneLocation[MAX_BONES];
+    GLuint m_prevBoneLocation[MAX_BONES];
 };
 
 
-#endif	/* LIGHTING_TECHNIQUE_H */
+#endif	/* SKINNING_TECHNIQUE_H */

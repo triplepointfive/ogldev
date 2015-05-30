@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+	Copyright 2013 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,50 +14,55 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-#include "shadow_map_technique.h"
+ */
 
 
-ShadowMapTechnique::ShadowMapTechnique()
+#include "motion_blur_technique.h"
+#include "ogldev_util.h"
+
+MotionBlurTechnique::MotionBlurTechnique()
 {
+    
 }
 
-bool ShadowMapTechnique::Init()
+bool MotionBlurTechnique::Init()
 {
     if (!Technique::Init()) {
         return false;
     }
 
-    if (!AddShader(GL_VERTEX_SHADER, "shaders/shadow_map.vs")) {
+    if (!AddShader(GL_VERTEX_SHADER, "shaders/motion_blur.vs")) {
         return false;
     }
 
-    if (!AddShader(GL_FRAGMENT_SHADER, "shaders/shadow_map.fs")) {
+    if (!AddShader(GL_FRAGMENT_SHADER, "shaders/motion_blur.fs")) {
         return false;
     }
 
     if (!Finalize()) {
         return false;
     }
-
-    m_WVPLocation = GetUniformLocation("gWVP");
-    m_textureLocation = GetUniformLocation("gShadowMap");
-
-    if (m_WVPLocation == INVALID_UNIFORM_LOCATION ||
-        m_textureLocation == INVALID_UNIFORM_LOCATION) {
+    
+    m_colorTextureLocation = GetUniformLocation("gColorTexture");
+    m_motionTextureLocation = GetUniformLocation("gMotionTexture");
+    
+    if (m_motionTextureLocation == INVALID_UNIFORM_LOCATION ||
+        m_colorTextureLocation == INVALID_UNIFORM_LOCATION) {
         return false;
     }
 
-    return true;
+	return true;
 }
 
-void ShadowMapTechnique::SetWVP(const Matrix4f& WVP)
+
+void MotionBlurTechnique::SetColorTextureUnit(uint TextureUnit)
 {
-    glUniformMatrix4fv(m_WVPLocation, 1, GL_TRUE, (const GLfloat*)WVP.m);
+    glUniform1i(m_colorTextureLocation, TextureUnit);
 }
 
-void ShadowMapTechnique::SetTextureUnit(unsigned int TextureUnit)
+
+void MotionBlurTechnique::SetMotionTextureUnit(uint TextureUnit)
 {
-    glUniform1i(m_textureLocation, TextureUnit);
+    glUniform1i(m_motionTextureLocation, TextureUnit);
 }
+

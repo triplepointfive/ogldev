@@ -18,23 +18,33 @@
 
 #include <limits.h>
 #include <string>
-#include <GL/glfx.h>
+#include <assert.h>
 
-#include "lighting_technique.h"
-#include "util.h"
+#include "skinning_technique.h"
+#include "ogldev_util.h"
 
 using namespace std;
 
-static const char* pEffectFile = "shaders/lighting.glsl";
-
-LightingTechnique::LightingTechnique() : Technique(pEffectFile)
+SkinningTechnique::SkinningTechnique()
 {   
 }
 
 
-bool LightingTechnique::Init()
+bool SkinningTechnique::Init()
 {
-    if (!CompileProgram("Lighting")) {
+    if (!Technique::Init()) {
+        return false;
+    }
+
+    if (!AddShader(GL_VERTEX_SHADER, "shaders/skinning.vs")) {
+        return false;
+    }
+
+    if (!AddShader(GL_FRAGMENT_SHADER, "shaders/skinning.fs")) {
+        return false;
+    }
+
+    if (!Finalize()) {
         return false;
     }
     
@@ -144,28 +154,38 @@ bool LightingTechnique::Init()
         }
     }
 
+    for (unsigned int i = 0 ; i < ARRAY_SIZE_IN_ELEMENTS(m_boneLocation) ; i++) {
+        char Name[128];
+        memset(Name, 0, sizeof(Name));
+        SNPRINTF(Name, sizeof(Name), "gBones[%d]", i);
+        m_boneLocation[i] = GetUniformLocation(Name);
+        SNPRINTF(Name, sizeof(Name), "gPrevBones[%d]", i);
+        m_prevBoneLocation[i] = GetUniformLocation(Name);
+    }
+
     return true;
 }
 
-void LightingTechnique::SetWVP(const Matrix4f& WVP)
+
+void SkinningTechnique::SetWVP(const Matrix4f& WVP)
 {
-    glUniformMatrix4fv(m_WVPLocation, 1, GL_TRUE, (const GLfloat*)WVP.m);    
+    glUniformMatrix4fv(m_WVPLocation, 1, GL_TRUE, (const GLfloat*)WVP);    
 }
 
 
-void LightingTechnique::SetWorldMatrix(const Matrix4f& WorldInverse)
+void SkinningTechnique::SetWorldMatrix(const Matrix4f& World)
 {
-    glUniformMatrix4fv(m_WorldMatrixLocation, 1, GL_TRUE, (const GLfloat*)WorldInverse.m);
+    glUniformMatrix4fv(m_WorldMatrixLocation, 1, GL_TRUE, (const GLfloat*)World);
 }
 
 
-void LightingTechnique::SetColorTextureUnit(unsigned int TextureUnit)
+void SkinningTechnique::SetColorTextureUnit(unsigned int TextureUnit)
 {
     glUniform1i(m_colorTextureLocation, TextureUnit);
 }
 
 
-void LightingTechnique::SetDirectionalLight(const DirectionalLight& Light)
+void SkinningTechnique::SetDirectionalLight(const DirectionalLight& Light)
 {
     glUniform3f(m_dirLightLocation.Color, Light.Color.x, Light.Color.y, Light.Color.z);
     glUniform1f(m_dirLightLocation.AmbientIntensity, Light.AmbientIntensity);
@@ -176,25 +196,25 @@ void LightingTechnique::SetDirectionalLight(const DirectionalLight& Light)
 }
 
 
-void LightingTechnique::SetEyeWorldPos(const Vector3f& EyeWorldPos)
+void SkinningTechnique::SetEyeWorldPos(const Vector3f& EyeWorldPos)
 {
     glUniform3f(m_eyeWorldPosLocation, EyeWorldPos.x, EyeWorldPos.y, EyeWorldPos.z);
 }
 
 
-void LightingTechnique::SetMatSpecularIntensity(float Intensity)
+void SkinningTechnique::SetMatSpecularIntensity(float Intensity)
 {
     glUniform1f(m_matSpecularIntensityLocation, Intensity);
 }
 
 
-void LightingTechnique::SetMatSpecularPower(float Power)
+void SkinningTechnique::SetMatSpecularPower(float Power)
 {
     glUniform1f(m_matSpecularPowerLocation, Power);
 }
 
 
-void LightingTechnique::SetPointLights(unsigned int NumLights, const PointLight* pLights)
+void SkinningTechnique::SetPointLights(unsigned int NumLights, const PointLight* pLights)
 {
     glUniform1i(m_numPointLightsLocation, NumLights);
     
@@ -209,7 +229,7 @@ void LightingTechnique::SetPointLights(unsigned int NumLights, const PointLight*
     }
 }
 
-void LightingTechnique::SetSpotLights(unsigned int NumLights, const SpotLight* pLights)
+void SkinningTechnique::SetSpotLights(unsigned int NumLights, const SpotLight* pLights)
 {
     glUniform1i(m_numSpotLightsLocation, NumLights);
 
@@ -226,4 +246,18 @@ void LightingTechnique::SetSpotLights(unsigned int NumLights, const SpotLight* p
         glUniform1f(m_spotLightsLocation[i].Atten.Linear,   pLights[i].Attenuation.Linear);
         glUniform1f(m_spotLightsLocation[i].Atten.Exp,      pLights[i].Attenuation.Exp);
     }
+}
+
+
+void SkinningTechnique::SetBoneTransform(uint Index, const Matrix4f& Transform)
+{
+    assert(Index < MAX_BONES);
+    glUniformMatrix4fv(m_boneLocation[Index], 1, GL_TRUE, (const GLfloat*)Transform);       
+}
+
+
+void SkinningTechnique::SetPrevBoneTransform(uint Index, const Matrix4f& Transform)
+{
+    assert(Index < MAX_BONES);
+    glUniformMatrix4fv(m_prevBoneLocation[Index], 1, GL_TRUE, (const GLfloat*)Transform);       
 }

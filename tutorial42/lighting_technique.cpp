@@ -17,26 +17,34 @@
 */
 
 #include <limits.h>
-#include "math_3d.h"
+#include "ogldev_math_3d.h"
 #include <string>
-#include <GL/glfx.h>
-
 
 #include "lighting_technique.h"
-#include "util.h"
+#include "ogldev_util.h"
 
 using namespace std;
 
-static const char* pEffectFile = "shaders/lighting.glsl";
-
-LightingTechnique::LightingTechnique() : Technique(pEffectFile)
+LightingTechnique::LightingTechnique()
 {   
 }
 
 
 bool LightingTechnique::Init()
 {
-    if (!CompileProgram("ShadowsPCF")) {
+    if (!Technique::Init()) {
+        return false;
+    }
+
+    if (!AddShader(GL_VERTEX_SHADER, "shaders/lighting.vs")) {
+        return false;
+    }
+
+    if (!AddShader(GL_FRAGMENT_SHADER, "shaders/lighting.fs")) {
+        return false;
+    }
+
+    if (!Finalize()) {
         return false;
     }
     
@@ -71,7 +79,7 @@ bool LightingTechnique::Init()
         m_numPointLightsLocation == INVALID_UNIFORM_LOCATION ||
         m_numSpotLightsLocation == INVALID_UNIFORM_LOCATION ||
         m_shadowMapSizeLocation == INVALID_UNIFORM_LOCATION) {
-    //    return false;
+        return false;
     }
 
     for (unsigned int i = 0 ; i < ARRAY_SIZE_IN_ELEMENTS(m_pointLightsLocation) ; i++) {

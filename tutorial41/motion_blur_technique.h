@@ -1,6 +1,6 @@
 /*
 
-	Copyright 2011 Etay Meiri
+	Copyright 2013 Etay Meiri
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,14 +14,30 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
-#ifndef OGLDEV_TYPES_H
-#define	OGLDEV_TYPES_H
+#ifndef MOTION_BLUR_TECHNIQUE_H
+#define	MOTION_BLUR_TECHNIQUE_H
 
-typedef unsigned int uint;
-typedef unsigned short ushort;
-typedef unsigned char uchar;
+#include "technique.h"
+#include "ogldev_math_3d.h"
 
-#endif	/* OGLDEV_TYPES_H */
+class MotionBlurTechnique : public Technique {
+public:
+
+    MotionBlurTechnique();
+
+    virtual bool Init();
+
+    void SetColorTextureUnit(uint TextureUnit);    
+    void SetMotionTextureUnit(uint TextureUnit);
+    
+private:
+    GLuint m_colorTextureLocation;
+    GLuint m_motionTextureLocation;
+};
+
+
+
+#endif	/* MOTION_BLUR_TECHNIQUE_H */
 

@@ -335,72 +335,63 @@ add_executable(tutorial37
     tutorial37/texture.cpp)
 target_link_libraries(tutorial37 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp)
 
-#add_executable(tutorial38
-#    tutorial38/main.cpp
-#    tutorial38/pipeline.cpp
-#    tutorial38/math_3d.cpp
-#    tutorial38/camera.cpp
-#    tutorial38/technique.cpp
-#    tutorial38/skinning_technique.cpp
-#    tutorial38/mesh.cpp
-#    tutorial38/glut_backend.cpp
-#    tutorial38/texture.cpp)
-#target_link_libraries(tutorial38 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp)
+add_executable(tutorial38
+    tutorial38/main.cpp
+    tutorial38/pipeline.cpp
+    tutorial38/math_3d.cpp
+    tutorial38/camera.cpp
+    tutorial38/technique.cpp
+    tutorial38/skinning_technique.cpp
+    tutorial38/mesh.cpp
+    tutorial38/glut_backend.cpp
+    tutorial38/texture.cpp)
+target_link_libraries(tutorial38 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+                      util)
 
-#add_executable(tutorial39
-#    tutorial39/main.cpp
-#    tutorial39/pipeline.cpp
-#    tutorial39/math_3d.cpp
-#    tutorial39/lighting_technique.cpp
-#    tutorial39/silhouette_technique.cpp
-#    tutorial39/camera.cpp
-#    tutorial39/technique.cpp
-#    tutorial39/mesh.cpp
-#    tutorial39/glut_backend.cpp
-#    tutorial39/texture.cpp)
-#target_link_libraries(tutorial39 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp)
+add_executable(tutorial39
+    tutorial39/main.cpp
+    tutorial39/pipeline.cpp
+    tutorial39/math_3d.cpp
+    tutorial39/lighting_technique.cpp
+    tutorial39/silhouette_technique.cpp
+    tutorial39/camera.cpp
+    tutorial39/technique.cpp
+    tutorial39/mesh.cpp
+    tutorial39/glut_backend.cpp
+    tutorial39/texture.cpp)
+target_link_libraries(tutorial39 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+                      util)
 
-#add_executable(tutorial40
-#    tutorial40/main.cpp
-#    tutorial40/pipeline.cpp
-#    tutorial40/math_3d.cpp
-#    tutorial40/lighting_technique.cpp
-#    tutorial40/null_technique.cpp
-#    tutorial40/shadow_volume_technique.cpp
-#    tutorial40/camera.cpp
-#    tutorial40/technique.cpp
-#    tutorial40/mesh.cpp
-#    tutorial40/glut_backend.cpp
-#    tutorial40/texture.cpp)
-#target_link_libraries(tutorial40 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp)
+add_executable(tutorial40
+    tutorial40/main.cpp
+    tutorial40/pipeline.cpp
+    tutorial40/math_3d.cpp
+    tutorial40/lighting_technique.cpp
+    tutorial40/null_technique.cpp
+    tutorial40/shadow_volume_technique.cpp
+    tutorial40/camera.cpp
+    tutorial40/technique.cpp
+    tutorial40/mesh.cpp
+    tutorial40/glut_backend.cpp
+    tutorial40/texture.cpp)
+target_link_libraries(tutorial40 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+                      util)
 
-#add_executable(tutorial41
-#    tutorial41/main.cpp
-#    tutorial41/pipeline.cpp
-#    tutorial41/math_3d.cpp
-#    tutorial41/lighting_technique.cpp
-#    tutorial41/null_technique.cpp
-#    tutorial41/shadow_volume_technique.cpp
-#    tutorial41/camera.cpp
-#    tutorial41/technique.cpp
-#    tutorial41/mesh.cpp
-#    tutorial41/glut_backend.cpp
-#    tutorial41/texture.cpp)
-#target_link_libraries(tutorial41 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp)
+add_executable(tutorial41
+    tutorial41/tutorial41.cpp
+    tutorial41/motion_blur_technique.cpp
+    tutorial41/intermediate_buffer.cpp
+    tutorial41/skinning_technique.cpp)
+target_link_libraries(tutorial41 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+                      app camera pipeline util technique texture skinned_mesh backend math_3d)
 
 add_executable(tutorial42
-    tutorial42/main.cpp
-    tutorial42/pipeline.cpp
-    tutorial42/math_3d.cpp
+    tutorial42/tutorial42.cpp
     tutorial42/lighting_technique.cpp
-    tutorial42/camera.cpp
     tutorial42/shadow_map_fbo.cpp
-    tutorial42/shadow_map_technique.cpp
-    tutorial42/technique.cpp
-    tutorial42/mesh.cpp
-    tutorial42/glut_backend.cpp
-    tutorial42/texture.cpp)
-target_link_libraries(tutorial42 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp)
+    tutorial42/shadow_map_technique.cpp)
+target_link_libraries(tutorial42 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+                      app camera pipeline util technique texture skinned_mesh backend math_3d basic_mesh)
 
 add_executable(tutorial43
     tutorial43/main.cpp
