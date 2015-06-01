@@ -95,7 +95,7 @@ public:
         
         m_pMesh = new Mesh();
 
-        return m_pMesh->LoadMesh("spider.obj");
+        return m_pMesh->LoadMesh("../Content/spider.obj");
     }
 
     void Run()

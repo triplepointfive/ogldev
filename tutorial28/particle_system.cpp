@@ -111,7 +111,7 @@ bool ParticleSystem::InitParticleSystem(const Vector3f& Pos)
 
     m_billboardTechnique.SetBillboardSize(0.01f);
     
-    m_pTexture = new Texture(GL_TEXTURE_2D, "fireworks_red.jpg");
+    m_pTexture = new Texture(GL_TEXTURE_2D, "../Content/fireworks_red.jpg");
     
     if (!m_pTexture->Load()) {
         return false;

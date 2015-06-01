@@ -256,7 +256,7 @@ int main(int argc, char** argv)
 
     glUniform1i(gSampler, 0);
 
-    pTexture = new Texture(GL_TEXTURE_2D, "test.png");
+    pTexture = new Texture(GL_TEXTURE_2D, "../Content/test.png");
 
     if (!pTexture->Load()) {
         return 1;

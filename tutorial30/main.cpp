@@ -83,7 +83,7 @@ public:
         //glPatchParameteri(GL_PATCH_VERTICES, 3);
      
         glActiveTexture(GL_TEXTURE4);
-        m_pDisplacementMap = new Texture(GL_TEXTURE_2D, "heightmap.jpg");
+        m_pDisplacementMap = new Texture(GL_TEXTURE_2D, "../Content/heightmap.jpg");
         
         if (!m_pDisplacementMap->Load()) {
             return false;
@@ -92,7 +92,7 @@ public:
         m_pDisplacementMap->Bind(DISPLACEMENT_TEXTURE_UNIT);
                 
         glActiveTexture(GL_TEXTURE0);
-        m_pColorMap = new Texture(GL_TEXTURE_2D, "diffuse.jpg");
+        m_pColorMap = new Texture(GL_TEXTURE_2D, "../Content/diffuse.jpg");
         
         if (!m_pColorMap->Load()) {
             return false;
@@ -110,7 +110,7 @@ public:
         m_lightingEffect.SetDispFactor(m_dispFactor);                        
         m_pMesh = new Mesh();
 
-        return m_pMesh->LoadMesh("quad2.obj");
+        return m_pMesh->LoadMesh("../Content/quad2.obj");
     }
 
     void Run()

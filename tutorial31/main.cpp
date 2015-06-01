@@ -85,7 +85,7 @@ public:
         m_lightingEffect.SetDirectionalLight(m_directionalLight);
         m_pMesh = new Mesh();
 
-        return m_pMesh->LoadMesh("monkey.obj");
+        return m_pMesh->LoadMesh("../Content/monkey.obj");
     }
 
     void Run()

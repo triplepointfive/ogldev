@@ -112,11 +112,11 @@ public:
               
         m_pGround = new Mesh();
         
-        if (!m_pGround->LoadMesh("quad.obj")) {
+        if (!m_pGround->LoadMesh("../Content/quad.obj")) {
             return false;
         }
                        
-        m_pTexture = new Texture(GL_TEXTURE_2D, "bricks.jpg");
+        m_pTexture = new Texture(GL_TEXTURE_2D, "../Content/bricks.jpg");
         
         if (!m_pTexture->Load()) {
             return false;
@@ -124,7 +124,7 @@ public:
         
         m_pTexture->Bind(COLOR_TEXTURE_UNIT);
 
-        m_pNormalMap = new Texture(GL_TEXTURE_2D, "normal_map.jpg");
+        m_pNormalMap = new Texture(GL_TEXTURE_2D, "../Content/normal_map.jpg");
         
         if (!m_pNormalMap->Load()) {
             return false;
