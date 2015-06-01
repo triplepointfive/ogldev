@@ -1,5 +1,15 @@
 cmake_minimum_required(VERSION 2.8)
 
+if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
+    message( FATAL_ERROR "Please select another Build Directory (build is a good one)!" )
+endif()
+if( CMAKE_SOURCE_DIR MATCHES " " )
+	message( "Your Source Directory contains spaces. If you experience problems when compiling, this can be the cause." )
+endif()
+if( CMAKE_BINARY_DIR MATCHES " " )
+	message( "Your Build Directory contains spaces. If you experience problems when compiling, this can be the cause." )
+endif()
+
 project(ogldev)
 
 find_package(ImageMagick COMPONENTS Magick++)
