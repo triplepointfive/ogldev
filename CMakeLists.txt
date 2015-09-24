@@ -419,8 +419,7 @@ target_link_libraries(tutorial43 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assi
 add_executable(tutorial44
     tutorial44/tutorial44.cpp
     tutorial44/lighting_technique.cpp
-    tutorial44/mesh.cpp
-    )
+    tutorial44/mesh.cpp)
 target_link_libraries(tutorial44 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
                       app io_buffer backend technique texture camera util math_3d pipeline)
 
@@ -444,3 +443,9 @@ add_executable(tutorial46
 target_link_libraries(tutorial46 glfw glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
                       app io_buffer backend technique texture camera util math_3d pipeline)
 
+add_executable(tutorial47
+    tutorial47/tutorial47.cpp
+    tutorial47/lighting_technique.cpp
+    tutorial47/shadow_map_technique.cpp)
+target_link_libraries(tutorial47 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+                      app camera pipeline util technique texture skinned_mesh backend math_3d basic_mesh shadow_map_fbo)

@@ -21,7 +21,7 @@
 
 #include <stdio.h>
 #ifdef WIN32
-#define _USE_MATH_DEFINES 
+#define _USE_MATH_DEFINES
 #include <cmath>
 #else
 #include <math.h>
@@ -77,7 +77,7 @@ struct Vector3f
         y = _y;
         z = _z;
     }
-    
+
     Vector3f(float f)
     {
         x = y = z = f;
@@ -115,6 +115,7 @@ struct Vector3f
         return &(x);
     }
 
+
     Vector3f Cross(const Vector3f& v) const;
 
     Vector3f& Normalize();
@@ -136,9 +137,9 @@ struct Vector4f
     float w;
 
     Vector4f()
-    {        
+    {
     }
-    
+
     Vector4f(float _x, float _y, float _z, float _w)
     {
         x = _x;
@@ -146,12 +147,20 @@ struct Vector4f
         z = _z;
         w = _w;
     }
-    
+
     void Print() const
     {
         printf("(%.02f, %.02f, %.02f, %.02f)", x, y, z, w);
-    }       
+    }
+
+    Vector3f to3f() const
+    {
+        Vector3f v(x, y, z);
+        return v;
+    }
 };
+
+
 
 inline Vector3f operator+(const Vector3f& l, const Vector3f& r)
 {
@@ -180,10 +189,22 @@ inline Vector3f operator*(const Vector3f& l, float f)
     return Ret;
 }
 
+
+inline Vector4f operator/(const Vector4f& l, float f)
+{
+    Vector4f Ret(l.x / f,
+                 l.y / f,
+                 l.z / f,
+                 l.w / f);
+
+    return Ret;
+}
+
+
 struct PersProjInfo
 {
     float FOV;
-    float Width; 
+    float Width;
     float Height;
     float zNear;
     float zFar;
@@ -195,9 +216,9 @@ public:
     float m[4][4];
 
     Matrix4f()
-    {        
+    {
     }
-    
+
     // constructor from Assimp matrix
     Matrix4f(const aiMatrix4x4& AssimpMatrix)
     {
@@ -206,15 +227,15 @@ public:
         m[2][0] = AssimpMatrix.c1; m[2][1] = AssimpMatrix.c2; m[2][2] = AssimpMatrix.c3; m[2][3] = AssimpMatrix.c4;
         m[3][0] = AssimpMatrix.d1; m[3][1] = AssimpMatrix.d2; m[3][2] = AssimpMatrix.d3; m[3][3] = AssimpMatrix.d4;
     }
-    
+
     Matrix4f(const aiMatrix3x3& AssimpMatrix)
     {
         m[0][0] = AssimpMatrix.a1; m[0][1] = AssimpMatrix.a2; m[0][2] = AssimpMatrix.a3; m[0][3] = 0.0f;
         m[1][0] = AssimpMatrix.b1; m[1][1] = AssimpMatrix.b2; m[1][2] = AssimpMatrix.b3; m[1][3] = 0.0f;
         m[2][0] = AssimpMatrix.c1; m[2][1] = AssimpMatrix.c2; m[2][2] = AssimpMatrix.c3; m[2][3] = 0.0f;
         m[3][0] = 0.0f           ; m[3][1] = 0.0f           ; m[3][2] = 0.0f           ; m[3][3] = 1.0f;
-    }   
-    
+    }
+
     Matrix4f(float a00, float a01, float a02, float a03,
              float a10, float a11, float a12, float a13,
              float a20, float a21, float a22, float a23,
@@ -223,24 +244,24 @@ public:
         m[0][0] = a00; m[0][1] = a01; m[0][2] = a02; m[0][3] = a03;
         m[1][0] = a10; m[1][1] = a11; m[1][2] = a12; m[1][3] = a13;
         m[2][0] = a20; m[2][1] = a21; m[2][2] = a22; m[2][3] = a23;
-        m[3][0] = a30; m[3][1] = a31; m[3][2] = a32; m[3][3] = a33;        
+        m[3][0] = a30; m[3][1] = a31; m[3][2] = a32; m[3][3] = a33;
     }
 
     void SetZero()
     {
         ZERO_MEM(m);
     }
-   
+
     Matrix4f Transpose() const
     {
         Matrix4f n;
-        
+
         for (unsigned int i = 0 ; i < 4 ; i++) {
             for (unsigned int j = 0 ; j < 4 ; j++) {
                 n.m[i][j] = m[j][i];
             }
         }
-        
+
         return n;
     }
 
@@ -268,40 +289,41 @@ public:
 
         return Ret;
     }
-    
+
     Vector4f operator*(const Vector4f& v) const
     {
         Vector4f r;
-        
+
         r.x = m[0][0]* v.x + m[0][1]* v.y + m[0][2]* v.z + m[0][3]* v.w;
         r.y = m[1][0]* v.x + m[1][1]* v.y + m[1][2]* v.z + m[1][3]* v.w;
         r.z = m[2][0]* v.x + m[2][1]* v.y + m[2][2]* v.z + m[2][3]* v.w;
         r.w = m[3][0]* v.x + m[3][1]* v.y + m[3][2]* v.z + m[3][3]* v.w;
-        
+
         return r;
     }
-    
+
     operator const float*() const
     {
         return &(m[0][0]);
     }
-    
+
     void Print() const
     {
         for (int i = 0 ; i < 4 ; i++) {
             printf("%f %f %f %f\n", m[i][0], m[i][1], m[i][2], m[i][3]);
-        }       
+        }
     }
-    
+
     float Determinant() const;
-    
+
     Matrix4f& Inverse();
-    
+
     void InitScaleTransform(float ScaleX, float ScaleY, float ScaleZ);
     void InitRotateTransform(float RotateX, float RotateY, float RotateZ);
     void InitTranslationTransform(float x, float y, float z);
     void InitCameraTransform(const Vector3f& Target, const Vector3f& Up);
     void InitPersProjTransform(const PersProjInfo& p);
+    void InitOrthoProjTransform(const PersProjInfo& p);
 };
 
 
@@ -313,7 +335,7 @@ struct Quaternion
 
     void Normalize();
 
-    Quaternion Conjugate();  
+    Quaternion Conjugate();
  };
 
 Quaternion operator*(const Quaternion& l, const Quaternion& r);

@@ -15,6 +15,7 @@ add_library(camera SHARED camera.cpp)
 add_library(texture SHARED ogldev_texture.cpp random_texture.cpp cubemap_texture.cpp)
 add_library(util SHARED ogldev_util.cpp)
 add_library(basic_mesh SHARED ogldev_basic_mesh.cpp)
+add_library(shadow_map_fbo SHARED ogldev_shadow_map_fbo.cpp)
 
 add_library(skinned_mesh SHARED ogldev_skinned_mesh.cpp)
 target_link_libraries(skinned_mesh texture)
