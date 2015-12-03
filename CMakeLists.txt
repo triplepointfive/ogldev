@@ -4,10 +4,10 @@ if( CMAKE_BINARY_DIR STREQUAL CMAKE_SOURCE_DIR )
     message( FATAL_ERROR "Please select another Build Directory (build is a good one)!" )
 endif()
 if( CMAKE_SOURCE_DIR MATCHES " " )
-	message( "Your Source Directory contains spaces. If you experience problems when compiling, this can be the cause." )
+    message( "Your Source Directory contains spaces. If you experience problems when compiling, this can be the cause." )
 endif()
 if( CMAKE_BINARY_DIR MATCHES " " )
-	message( "Your Build Directory contains spaces. If you experience problems when compiling, this can be the cause." )
+    message( "Your Build Directory contains spaces. If you experience problems when compiling, this can be the cause." )
 endif()
 
 project(ogldev)
@@ -19,50 +19,60 @@ add_subdirectory(Common)
 include_directories(Include
                     ${ImageMagick_INCLUDE_DIRS})
 
+if( MINGW )
+    set(glut freeglut)
+    set(GL openGL32)
+    set(GLEW GLEW32)
+else()
+    set(glut glut)
+    set(GL GL)
+    set(GLEW GLEW)
+endif()
+
 add_executable(tutorial01 tutorial01/main.cpp)
-target_link_libraries(tutorial01 glut GL)
+target_link_libraries(tutorial01 ${glut} ${GL})
 
 add_executable(tutorial02 tutorial02/main.cpp)
-target_link_libraries(tutorial02 glut GL GLEW)
+target_link_libraries(tutorial02 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial03 tutorial03/main.cpp)
-target_link_libraries(tutorial03 glut GL GLEW)
+target_link_libraries(tutorial03 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial04 tutorial04/main.cpp)
-target_link_libraries(tutorial04 glut GL GLEW)
+target_link_libraries(tutorial04 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial05 tutorial05/main.cpp)
-target_link_libraries(tutorial05 glut GL GLEW)
+target_link_libraries(tutorial05 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial06 tutorial06/main.cpp)
-target_link_libraries(tutorial06 glut GL GLEW)
+target_link_libraries(tutorial06 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial07 tutorial07/main.cpp)
-target_link_libraries(tutorial07 glut GL GLEW)
+target_link_libraries(tutorial07 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial08 tutorial08/main.cpp)
-target_link_libraries(tutorial08 glut GL GLEW)
+target_link_libraries(tutorial08 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial09 tutorial09/main.cpp)
-target_link_libraries(tutorial09 glut GL GLEW)
+target_link_libraries(tutorial09 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial10 tutorial10/main.cpp)
-target_link_libraries(tutorial10 glut GL GLEW)
+target_link_libraries(tutorial10 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial11 tutorial11/main.cpp tutorial11/pipeline.cpp)
-target_link_libraries(tutorial11 glut GL GLEW)
+target_link_libraries(tutorial11 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial12 tutorial12/main.cpp tutorial12/pipeline.cpp)
-target_link_libraries(tutorial12 glut GL GLEW)
+target_link_libraries(tutorial12 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial13 tutorial13/main.cpp tutorial13/pipeline.cpp tutorial13/math_3d.cpp)
-target_link_libraries(tutorial13 glut GL GLEW)
+target_link_libraries(tutorial13 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial14 tutorial14/main.cpp tutorial14/pipeline.cpp tutorial14/math_3d.cpp tutorial14/camera.cpp)
-target_link_libraries(tutorial14 glut GL GLEW)
+target_link_libraries(tutorial14 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial15 tutorial15/main.cpp tutorial15/pipeline.cpp tutorial15/math_3d.cpp tutorial15/camera.cpp)
-target_link_libraries(tutorial15 glut GL GLEW)
+target_link_libraries(tutorial15 ${glut} ${GL} ${GLEW})
 
 add_executable(tutorial16
     tutorial16/main.cpp
@@ -70,7 +80,7 @@ add_executable(tutorial16
     tutorial16/math_3d.cpp
     tutorial16/camera.cpp
     tutorial16/texture.cpp)
-target_link_libraries(tutorial16 glut GL GLEW ${ImageMagick_LIBRARIES})
+target_link_libraries(tutorial16 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES})
 
 add_executable(tutorial17
     tutorial17/main.cpp
@@ -81,7 +91,7 @@ add_executable(tutorial17
     tutorial17/technique.cpp
     tutorial17/glut_backend.cpp
     tutorial17/texture.cpp)
-target_link_libraries(tutorial17 glut GL GLEW ${ImageMagick_LIBRARIES})
+target_link_libraries(tutorial17 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES})
 
 add_executable(tutorial18
     tutorial18/main.cpp
@@ -92,7 +102,7 @@ add_executable(tutorial18
     tutorial18/technique.cpp
     tutorial18/glut_backend.cpp
     tutorial18/texture.cpp)
-target_link_libraries(tutorial18 glut GL GLEW ${ImageMagick_LIBRARIES})
+target_link_libraries(tutorial18 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES})
 
 add_executable(tutorial19
     tutorial19/main.cpp
@@ -103,7 +113,7 @@ add_executable(tutorial19
     tutorial19/technique.cpp
     tutorial19/glut_backend.cpp
     tutorial19/texture.cpp)
-target_link_libraries(tutorial19 glut GL GLEW ${ImageMagick_LIBRARIES})
+target_link_libraries(tutorial19 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES})
 
 add_executable(tutorial20
     tutorial20/main.cpp
@@ -114,7 +124,7 @@ add_executable(tutorial20
     tutorial20/technique.cpp
     tutorial20/glut_backend.cpp
     tutorial20/texture.cpp)
-target_link_libraries(tutorial20 glut GL GLEW ${ImageMagick_LIBRARIES})
+target_link_libraries(tutorial20 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES})
 
 add_executable(tutorial21
     tutorial21/main.cpp
@@ -125,7 +135,7 @@ add_executable(tutorial21
     tutorial21/technique.cpp
     tutorial21/glut_backend.cpp
     tutorial21/texture.cpp)
-target_link_libraries(tutorial21 glut GL GLEW ${ImageMagick_LIBRARIES})
+target_link_libraries(tutorial21 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES})
 
 add_executable(tutorial22
     tutorial22/main.cpp
@@ -137,7 +147,7 @@ add_executable(tutorial22
     tutorial22/mesh.cpp
     tutorial22/glut_backend.cpp
     tutorial22/texture.cpp)
-target_link_libraries(tutorial22 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial22 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial23
     tutorial23/main.cpp
@@ -151,7 +161,7 @@ add_executable(tutorial23
     tutorial23/mesh.cpp
     tutorial23/glut_backend.cpp
     tutorial23/texture.cpp)
-target_link_libraries(tutorial23 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial23 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial24
     tutorial24/main.cpp
@@ -165,7 +175,7 @@ add_executable(tutorial24
     tutorial24/mesh.cpp
     tutorial24/glut_backend.cpp
     tutorial24/texture.cpp)
-target_link_libraries(tutorial24 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial24 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial25
     tutorial25/main.cpp
@@ -180,7 +190,7 @@ add_executable(tutorial25
     tutorial25/mesh.cpp
     tutorial25/glut_backend.cpp
     tutorial25/texture.cpp)
-target_link_libraries(tutorial25 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial25 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial26
     tutorial26/main.cpp
@@ -192,7 +202,7 @@ add_executable(tutorial26
     tutorial26/mesh.cpp
     tutorial26/glut_backend.cpp
     tutorial26/texture.cpp)
-target_link_libraries(tutorial26 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial26 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial27
     tutorial27/main.cpp
@@ -206,7 +216,7 @@ add_executable(tutorial27
     tutorial27/mesh.cpp
     tutorial27/glut_backend.cpp
     tutorial27/texture.cpp)
-target_link_libraries(tutorial27 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial27 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial28
     tutorial28/main.cpp
@@ -222,7 +232,7 @@ add_executable(tutorial28
     tutorial28/mesh.cpp
     tutorial28/glut_backend.cpp
     tutorial28/texture.cpp)
-target_link_libraries(tutorial28 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial28 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial29
     tutorial29/main.cpp
@@ -237,7 +247,7 @@ add_executable(tutorial29
     tutorial29/mesh.cpp
     tutorial29/glut_backend.cpp
     tutorial29/texture.cpp)
-target_link_libraries(tutorial29 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial29 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial30
     tutorial30/main.cpp
@@ -249,7 +259,7 @@ add_executable(tutorial30
     tutorial30/mesh.cpp
     tutorial30/glut_backend.cpp
     tutorial30/texture.cpp)
-target_link_libraries(tutorial30 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial30 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial31
     tutorial31/main.cpp
@@ -261,7 +271,7 @@ add_executable(tutorial31
     tutorial31/mesh.cpp
     tutorial31/glut_backend.cpp
     tutorial31/texture.cpp)
-target_link_libraries(tutorial31 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial31 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial32
     tutorial32/main.cpp
@@ -273,7 +283,7 @@ add_executable(tutorial32
     tutorial32/mesh.cpp
     tutorial32/glut_backend.cpp
     tutorial32/texture.cpp)
-target_link_libraries(tutorial32 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial32 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial33
     tutorial33/main.cpp
@@ -285,7 +295,7 @@ add_executable(tutorial33
     tutorial33/mesh.cpp
     tutorial33/glut_backend.cpp
     tutorial33/texture.cpp)
-target_link_libraries(tutorial33 glut GL GLEW ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial33 ${glut} ${GL} ${GLEW} ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial34
     tutorial34/main.cpp
@@ -297,7 +307,7 @@ add_executable(tutorial34
     tutorial34/mesh.cpp
     tutorial34/glut_backend.cpp
     tutorial34/texture.cpp)
-target_link_libraries(tutorial34 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial34 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial35
     tutorial35/main.cpp
@@ -310,7 +320,7 @@ add_executable(tutorial35
     tutorial35/mesh.cpp
     tutorial35/glut_backend.cpp
     tutorial35/texture.cpp)
-target_link_libraries(tutorial35 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial35 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial36
     tutorial36/main.cpp
@@ -326,7 +336,7 @@ add_executable(tutorial36
     tutorial36/mesh.cpp
     tutorial36/glut_backend.cpp
     tutorial36/texture.cpp)
-target_link_libraries(tutorial36 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial36 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial37
     tutorial37/main.cpp
@@ -343,7 +353,7 @@ add_executable(tutorial37
     tutorial37/mesh.cpp
     tutorial37/glut_backend.cpp
     tutorial37/texture.cpp)
-target_link_libraries(tutorial37 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp)
+target_link_libraries(tutorial37 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp)
 
 add_executable(tutorial38
     tutorial38/main.cpp
@@ -355,7 +365,7 @@ add_executable(tutorial38
     tutorial38/mesh.cpp
     tutorial38/glut_backend.cpp
     tutorial38/texture.cpp)
-target_link_libraries(tutorial38 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+target_link_libraries(tutorial38 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
                       util)
 
 add_executable(tutorial39
@@ -369,7 +379,7 @@ add_executable(tutorial39
     tutorial39/mesh.cpp
     tutorial39/glut_backend.cpp
     tutorial39/texture.cpp)
-target_link_libraries(tutorial39 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+target_link_libraries(tutorial39 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
                       util)
 
 add_executable(tutorial40
@@ -384,7 +394,7 @@ add_executable(tutorial40
     tutorial40/mesh.cpp
     tutorial40/glut_backend.cpp
     tutorial40/texture.cpp)
-target_link_libraries(tutorial40 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+target_link_libraries(tutorial40 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
                       util)
 
 add_executable(tutorial41
@@ -392,7 +402,7 @@ add_executable(tutorial41
     tutorial41/motion_blur_technique.cpp
     tutorial41/intermediate_buffer.cpp
     tutorial41/skinning_technique.cpp)
-target_link_libraries(tutorial41 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+target_link_libraries(tutorial41 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
                       app camera pipeline util technique texture skinned_mesh backend math_3d)
 
 add_executable(tutorial42
@@ -400,7 +410,7 @@ add_executable(tutorial42
     tutorial42/lighting_technique.cpp
     tutorial42/shadow_map_fbo.cpp
     tutorial42/shadow_map_technique.cpp)
-target_link_libraries(tutorial42 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+target_link_libraries(tutorial42 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
                       app camera pipeline util technique texture skinned_mesh backend math_3d basic_mesh)
 
 add_executable(tutorial43
@@ -413,14 +423,14 @@ add_executable(tutorial43
     tutorial43/shadow_map_technique.cpp
     tutorial43/mesh.cpp
     tutorial43/glut_backend.cpp)
-target_link_libraries(tutorial43 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+target_link_libraries(tutorial43 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
                       technique texture)
 
 add_executable(tutorial44
     tutorial44/tutorial44.cpp
     tutorial44/lighting_technique.cpp
     tutorial44/mesh.cpp)
-target_link_libraries(tutorial44 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+target_link_libraries(tutorial44 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
                       app io_buffer backend technique texture camera util math_3d pipeline)
 
 add_executable(tutorial45
@@ -430,7 +440,7 @@ add_executable(tutorial45
     tutorial45/mesh.cpp
     tutorial45/geom_pass_tech.cpp
     tutorial45/ssao_technique.cpp)
-target_link_libraries(tutorial45 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+target_link_libraries(tutorial45 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
                       app io_buffer backend technique texture camera util math_3d pipeline)
 
 add_executable(tutorial46
@@ -440,12 +450,12 @@ add_executable(tutorial46
     tutorial46/lighting_technique.cpp
     tutorial46/geom_pass_tech.cpp
     tutorial46/blur_tech.cpp)
-target_link_libraries(tutorial46 glfw glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+target_link_libraries(tutorial46 glfw ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
                       app io_buffer backend technique texture camera util math_3d pipeline)
 
 add_executable(tutorial47
     tutorial47/tutorial47.cpp
     tutorial47/lighting_technique.cpp
     tutorial47/shadow_map_technique.cpp)
-target_link_libraries(tutorial47 glut GL GLEW glfx ${ImageMagick_LIBRARIES} assimp
+target_link_libraries(tutorial47 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
                       app camera pipeline util technique texture skinned_mesh backend math_3d basic_mesh shadow_map_fbo)
