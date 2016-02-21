@@ -67,15 +67,20 @@ struct Vector3f
     float y;
     float z;
 
-    Vector3f()
-    {
-    }
+    Vector3f() {}
 
     Vector3f(float _x, float _y, float _z)
     {
         x = _x;
         y = _y;
         z = _z;
+    }
+
+    Vector3f(const float* pFloat)
+    {
+        x = pFloat[0];
+        y = pFloat[0];
+        z = pFloat[0];
     }
 
     Vector3f(float f)
@@ -210,6 +215,20 @@ struct PersProjInfo
     float zFar;
 };
 
+struct Quaternion
+{
+    float x, y, z, w;
+
+    Quaternion(float _x, float _y, float _z, float _w);
+
+    void Normalize();
+
+    Quaternion Conjugate();
+
+    Vector3f ToDegrees();
+ };
+
+
 class Matrix4f
 {
 public:
@@ -320,23 +339,12 @@ public:
 
     void InitScaleTransform(float ScaleX, float ScaleY, float ScaleZ);
     void InitRotateTransform(float RotateX, float RotateY, float RotateZ);
+    void InitRotateTransform(const Quaternion& quat);
     void InitTranslationTransform(float x, float y, float z);
     void InitCameraTransform(const Vector3f& Target, const Vector3f& Up);
     void InitPersProjTransform(const PersProjInfo& p);
     void InitOrthoProjTransform(const PersProjInfo& p);
 };
-
-
-struct Quaternion
-{
-    float x, y, z, w;
-
-    Quaternion(float _x, float _y, float _z, float _w);
-
-    void Normalize();
-
-    Quaternion Conjugate();
- };
 
 Quaternion operator*(const Quaternion& l, const Quaternion& r);
 

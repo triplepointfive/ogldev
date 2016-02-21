@@ -16,8 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <AntTweakBar.h>
 
-#include <assert.h>
+#include "ogldev_util.h"
 #include "ogldev_backend.h"
 #include "ogldev_glut_backend.h"
 #include "ogldev_glfw_backend.h"
@@ -38,7 +39,7 @@ void OgldevBackendInit(OGLDEV_BACKEND_TYPE BackendType, int argc, char** argv, b
             break;
         default:
             assert(0);
-    }
+    }   
 }
 
 
@@ -59,6 +60,8 @@ void OgldevBackendTerminate()
 
 bool OgldevBackendCreateWindow(uint Width, uint Height, bool isFullScreen, const char* pTitle)
 {
+    TwWindowSize(Width, Height);
+    
     switch (sBackendType) {
         case OGLDEV_BACKEND_TYPE_GLUT:
             return GLUTBackendCreateWindow(Width, Height, isFullScreen, pTitle);
@@ -67,13 +70,15 @@ bool OgldevBackendCreateWindow(uint Width, uint Height, bool isFullScreen, const
         default:
             assert(0);
     }
+    
+    
 
 	return false;
 }
 
 
 void OgldevBackendRun(ICallbacks* pCallbacks)
-{
+{  
     switch (sBackendType) {
         case OGLDEV_BACKEND_TYPE_GLUT:
             GLUTBackendRun(pCallbacks);
@@ -83,12 +88,14 @@ void OgldevBackendRun(ICallbacks* pCallbacks)
             break;
         default:
             assert(0);
-    }
+    }    
 }
 
 
 void OgldevBackendSwapBuffers()
 {
+    TwDraw();
+    
     switch (sBackendType) {
         case OGLDEV_BACKEND_TYPE_GLUT:
             GLUTBackendSwapBuffers();
@@ -117,3 +124,16 @@ void OgldevBackendLeaveMainLoop()
 }
 
 
+void OgldevBackendSetMousePos(uint x, uint y)
+{
+    switch (sBackendType) {
+        case OGLDEV_BACKEND_TYPE_GLUT:
+           //GLUTBackendLeaveMainLoop();
+            break;
+        case OGLDEV_BACKEND_TYPE_GLFW:
+            GLFWBackendSetMousePos(x, y);
+            break;
+        default:
+            assert(0);
+    }    
+}

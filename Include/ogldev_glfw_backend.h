@@ -34,4 +34,6 @@ void GLFWBackendSwapBuffers();
 
 void GLFWBackendLeaveMainLoop();
 
+void GLFWBackendSetMousePos(uint x, uint y);
+
 #endif

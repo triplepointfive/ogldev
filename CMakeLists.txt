@@ -457,5 +457,10 @@ add_executable(tutorial47
     tutorial47/tutorial47.cpp
     tutorial47/lighting_technique.cpp
     tutorial47/shadow_map_technique.cpp)
-target_link_libraries(tutorial47 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp
-                      app camera pipeline util technique texture skinned_mesh backend math_3d basic_mesh shadow_map_fbo)
+target_link_libraries(tutorial47 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp AntTweakBar
+                      app basic_lighting camera pipeline util technique texture skinned_mesh backend math_3d basic_mesh shadow_map_fbo)
+
+add_executable(tutorial48
+    tutorial48/tutorial48.cpp)
+target_link_libraries(tutorial48 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp AntTweakBar
+                      atb app basic_lighting camera pipeline util technique texture skinned_mesh backend math_3d basic_mesh shadow_map_fbo)

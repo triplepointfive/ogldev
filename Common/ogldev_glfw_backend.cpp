@@ -120,9 +120,9 @@ static OGLDEV_MOUSE GLFWMouseToOGLDEVMouse(uint Button)
 
 static void KeyCallback(GLFWwindow* pWindow, int key, int scancode, int action, int mods)
 {   
-    OGLDEV_KEY OgldevKey = GLFWKeyToOGLDEVKey(key);
-    
-    s_pCallbacks->KeyboardCB(OgldevKey);
+    OGLDEV_KEY OgldevKey = GLFWKeyToOGLDEVKey(key);   
+    OGLDEV_KEY_STATE OgldevKeyState = (action == GLFW_PRESS) ? OGLDEV_KEY_STATE_PRESS : OGLDEV_KEY_STATE_RELEASE;
+    s_pCallbacks->KeyboardCB(OgldevKey, OgldevKeyState);
 }
 
 
@@ -132,7 +132,7 @@ static void CursorPosCallback(GLFWwindow* pWindow, double x, double y)
 }
 
 
-static void MouseCallback(GLFWwindow* pWindow, int Button, int Action, int Mode)
+static void MouseButtonCallback(GLFWwindow* pWindow, int Button, int Action, int Mode)
 {
     OGLDEV_MOUSE OgldevMouse = GLFWMouseToOGLDEVMouse(Button);
 
@@ -149,7 +149,7 @@ static void InitCallbacks()
 {
     glfwSetKeyCallback(s_pWindow, KeyCallback);
     glfwSetCursorPosCallback(s_pWindow, CursorPosCallback);
-    glfwSetMouseButtonCallback(s_pWindow, MouseCallback);
+    glfwSetMouseButtonCallback(s_pWindow, MouseButtonCallback);
 }
 
 void GLFWErrorCallback(int error, const char* description)
@@ -164,11 +164,14 @@ void GLFWErrorCallback(int error, const char* description)
     exit(0);
 }
 
+
 void GLFWBackendInit(int argc, char** argv, bool WithDepth, bool WithStencil)
 {
     sWithDepth = WithDepth;
     sWithStencil = WithStencil;
 
+    glfwSetErrorCallback(GLFWErrorCallback);    
+    
     if (glfwInit() != 1) {
         OGLDEV_ERROR("Error initializing GLFW");
         exit(1);
@@ -178,9 +181,7 @@ void GLFWBackendInit(int argc, char** argv, bool WithDepth, bool WithStencil)
     
     glfwGetVersion(&Major, &Minor, &Rev);
     
-    printf("GLFW %d.%d.%d initialized\n", Major, Minor, Rev);
-    
-    glfwSetErrorCallback(GLFWErrorCallback);
+    printf("GLFW %d.%d.%d initialized\n", Major, Minor, Rev);       
 }
 
 
@@ -251,4 +252,10 @@ void GLFWBackendSwapBuffers()
 void GLFWBackendLeaveMainLoop()
 {
     glfwSetWindowShouldClose(s_pWindow, 1);
+}
+
+
+void GLFWBackendSetMousePos(uint x, uint y)
+{
+    glfwSetCursorPos(s_pWindow, (double)x, (double)y);
 }

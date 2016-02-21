@@ -16,8 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef UTIL_H
-#define	UTIL_H
+#ifndef OGLDEV_UTIL_H
+#define	OGLDEV_UTIL_H
 
 #ifndef WIN32
 #include <unistd.h>
@@ -26,6 +26,7 @@
 #include <stdio.h>
 #include <string>
 #include <string.h>
+#include <assert.h>
 #include "ogldev_types.h"
 
 using namespace std;
@@ -71,5 +72,5 @@ float fmax(float a, float b);
 
 long long GetCurrentTimeMillis();
 
-#endif	/* UTIL_H */
+#endif	/* OGLDEV_UTIL_H */
 
