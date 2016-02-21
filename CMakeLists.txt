@@ -463,4 +463,4 @@ target_link_libraries(tutorial47 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRAR
 add_executable(tutorial48
     tutorial48/tutorial48.cpp)
 target_link_libraries(tutorial48 ${glut} ${GL} ${GLEW} glfx ${ImageMagick_LIBRARIES} assimp AntTweakBar
-                      atb app basic_lighting camera pipeline util technique texture skinned_mesh backend math_3d basic_mesh shadow_map_fbo)
+                      atb app basic_lighting camera pipeline util technique skinned_mesh backend math_3d basic_mesh)
