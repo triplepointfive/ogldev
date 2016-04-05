@@ -13,50 +13,28 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
-#ifndef OGLDEV_SHADOW_MAP_FBO_H
-#define	OGLDEV_SHADOW_MAP_FBO_H
+#ifndef CASCADED_SHADOW_MAP_TECHNIQUE_H
+#define	CASCADED_SHADOW_MAP_TECHNIQUE_H
 
-#include <GL/glew.h>
+#include "technique.h"
+#include "ogldev_math_3d.h"
 
-class ShadowMapFBO
-{
+class CSMTechnique : public Technique {
+
 public:
-    ShadowMapFBO();
 
-    ~ShadowMapFBO();
+    CSMTechnique();
 
-    bool Init(unsigned int WindowWidth, unsigned int WindowHeight);
+    virtual bool Init();
 
-    void BindForWriting();
-
-    void BindForReading(GLenum TextureUnit);
-
+    void SetWVP(const Matrix4f& WVP);
 private:
-    GLuint m_fbo;
-    GLuint m_shadowMap;
+
+    GLuint m_WVPLocation;
 };
 
 
-class CascadedShadowMapFBO
-{
-public:
-    CascadedShadowMapFBO();
-
-    ~CascadedShadowMapFBO();
-
-    bool Init(unsigned int WindowWidth, unsigned int WindowHeight);
-
-    void BindForWriting(uint CascadeIndex);
-
-    void BindForReading();
-
-private:
-    GLuint m_fbo;
-    GLuint m_shadowMap[3];
-};
-
-
-#endif	/* OGLDEV_SHADOW_MAP_FBO_H */
+#endif	/* CASCADED_SHADOW_MAP_TECHNIQUE_H */
 

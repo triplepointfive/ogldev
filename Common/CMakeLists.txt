@@ -4,18 +4,26 @@ project(Common)
 
 find_package(ImageMagick COMPONENTS Magick++)
 
-include_directories(../Include ${ImageMagick_INCLUDE_DIRS})
-
-link_libraries(glut glfw assimp AntTweakBar)
-
 if( MINGW )
     set(glut freeglut)
     set(GL openGL32)
     set(GLEW GLEW32)
+
+    include_directories(../Include ${ImageMagick_INCLUDE_DIRS})
+
+    link_libraries(glut glfw assimp AntTweakBar)
 else()
     set(glut glut)
     set(GL GL)
     set(GLEW GLEW)
+
+    find_package(PkgConfig REQUIRED)
+
+    pkg_search_module(GLFW REQUIRED glfw3)
+
+    include_directories(../Include ${ImageMagick_INCLUDE_DIRS} ${GLFW_INCLUDE_DIRS})
+
+    link_libraries(glut ${GLFW_LIBRARIES} assimp AntTweakBar)
 endif()
 
 add_library(math_3d SHARED math_3d.cpp)

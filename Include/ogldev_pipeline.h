@@ -92,6 +92,11 @@ public:
     {
         m_persProjInfo = p;
     }
+    
+    void SetOrthographicProj(const OrthoProjInfo& p)
+    {
+        m_orthoProjInfo = p;
+    }    
 
     void SetCamera(const Vector3f& Pos, const Vector3f& Target, const Vector3f& Up)
     {
@@ -127,6 +132,7 @@ private:
     Vector3f m_rotateInfo;
 
     PersProjInfo m_persProjInfo;
+    OrthoProjInfo m_orthoProjInfo;
 
     struct {
         Vector3f Pos;

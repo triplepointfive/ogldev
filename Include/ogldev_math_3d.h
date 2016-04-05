@@ -153,9 +153,13 @@ struct Vector4f
         w = _w;
     }
 
-    void Print() const
+    void Print(bool endl = true) const
     {
         printf("(%.02f, %.02f, %.02f, %.02f)", x, y, z, w);
+
+        if (endl) {
+            printf("\n");
+        }
     }
 
     Vector3f to3f() const
@@ -213,6 +217,17 @@ struct PersProjInfo
     float Height;
     float zNear;
     float zFar;
+};
+
+
+struct OrthoProjInfo
+{
+    float r;        // right
+    float l;        // left
+    float b;        // bottom
+    float t;        // top
+    float n;        // z near
+    float f;        // z far
 };
 
 struct Quaternion
@@ -343,7 +358,7 @@ public:
     void InitTranslationTransform(float x, float y, float z);
     void InitCameraTransform(const Vector3f& Target, const Vector3f& Up);
     void InitPersProjTransform(const PersProjInfo& p);
-    void InitOrthoProjTransform(const PersProjInfo& p);
+    void InitOrthoProjTransform(const OrthoProjInfo& p);
 };
 
 Quaternion operator*(const Quaternion& l, const Quaternion& r);
