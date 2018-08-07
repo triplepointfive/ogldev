@@ -1,3 +1,7 @@
+# This project is no longer maintained
+
+Download the sources right from http://ogldev.atspace.co.uk/
+
 # Об ogldev
 
 Всем привет!
